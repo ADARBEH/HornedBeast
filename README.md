@@ -11,4 +11,3 @@
 - #### Actual time required to complete: Three hours
 
 ---
-# horned-beast
