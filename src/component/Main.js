@@ -1,8 +1,7 @@
 import React from "react";
 import HornedBeast from "./HornedBeasts";
+import Horned_data from "./Horned.json"
 
-
-let animals_arr = require('./Horned.json');
 
 
 class Main extends React.Component{
@@ -10,7 +9,7 @@ class Main extends React.Component{
   return(
 
     <>
-    {animals_arr.map((item,key) => 
+    {Horned_data.map(item => 
         {
           return (
             <HornedBeast title={item.title} imageurl={item.image_url} description={item.description} />
