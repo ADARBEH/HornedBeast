@@ -1,4 +1,6 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 class HornedBeast extends React.Component {
   constructor(props) {
@@ -11,15 +13,20 @@ class HornedBeast extends React.Component {
   handleClick = () => {
     this.setState({clickCounter: this.state.clickCounter + 1})
   }
+  
 
   render() {
     return (
-      <>
-        <h2>{this.props.title}</h2>
-        <img src={this.props.imageurl} alt={this.props.title} onClick={this.handleClick} />  
-        <p>{this.props.description}</p>
-        <span>👍{this.state.clickCounter}</span>
-      </>
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={this.props.imageurl} alt={this.props.title} onClick={this.handleClick} />
+      <Card.Body>
+        <Card.Title>{this.props.title}</Card.Title>
+        <Card.Text>
+        {this.props.description}
+        </Card.Text>
+        <Button variant="primary">👍{this.state.clickCounter}</Button>
+      </Card.Body>
+    </Card>
     )
   }
 }
