@@ -1,19 +1,34 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import SelectedBeast from "./SelectedBeast.js"
 
 class HornedBeast extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clickCounter: 0
-    }
+    clickCounter: 0,
+    showModal : false,
+    Src: this.props.imageurl,
+    Titl: this.props.title,
+    Descrip: this.props.description,
+  }}
+
+  handleClose = () => {
+    this.setState({
+      showModal: false 
+    })
   }
 
-  handleClick = () => {
-    this.setState({clickCounter: this.state.clickCounter + 1})
+
+  handleClick = (e) => {
+    e.preventDefault();
+    this.setState({
+      clickCounter: this.state.clickCounter + 1,
+      showModal : true
+    });
   }
-  
+
 
   render() {
     return (
@@ -25,6 +40,13 @@ class HornedBeast extends React.Component {
         {this.props.description}
         </Card.Text>
         <Button variant="primary">👍{this.state.clickCounter}</Button>
+        <SelectedBeast 
+        src = {this.state.Src} 
+        Titl = {this.state.Titl} 
+        Descrip = {this.state.Descrip} 
+        showbyimg = {this.state.showw}
+        showModal={this.state.showModal}
+        handleClose={this.handleClose} />
       </Card.Body>
     </Card>
     )
