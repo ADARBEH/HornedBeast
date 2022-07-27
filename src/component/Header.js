@@ -8,7 +8,6 @@ class Header extends React.Component {
     <>
     <Navbarbar />
     <h1>Horned Beasts</h1>
-
     </>
     );
   }
