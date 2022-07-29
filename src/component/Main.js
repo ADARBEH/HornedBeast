@@ -2,6 +2,8 @@ import React from "react";
 import HornedBeast from "./HornedBeasts";
 import Horned_data from "./Horned.json"
 import Formuser from "./Formuser";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 
 
@@ -12,18 +14,21 @@ class Main extends React.Component{
     super(props);
     this.state = {
       data: Horned_data,
-      search : ""
     }
   }
 
-  handlesearch = (event) => {
-    const filterdata = Horned_data.filter((data) => {
-      return data.horns.includes(this.search)})
-      this.setState({
-        data : filterdata
-      }
-      )
+  handlesearch = (e) => {
+    const numberofhorns = parseInt(e.target.value)
+    let filterdata = Horned_data
+
+    if (numberofhorns){
+      filterdata = Horned_data.filter(item => item.horns === numberofhorns)
     }
+
+    this.setState({data : filterdata})
+  }
+      
+
 
     
 
@@ -32,16 +37,18 @@ class Main extends React.Component{
   return(
     <>
       <Formuser
-      handlesearch = {this.handlesearch}
+      handlesearch = {this.handlesearch}/>
 
-      />
-
-     {this.state.data.map(item => 
+      <Row xs={2} md={4} className="g-4">
+      {this.state.data.map(item => 
       {
       return (
-     <HornedBeast title={item.title} imageurl={item.image_url} description={item.description} />
+      <Col>
+        <HornedBeast title={item.title} imageurl={item.image_url} description={item.description} />
+     </Col>
       )})  
-      }         
+      } 
+      </Row>        
     </>
   );
   }
